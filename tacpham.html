@@ -1,4 +1,4 @@
-<!-- tacpham.html -->
+<!-- tacpham.html - Cập nhật với carousel -->
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -7,6 +7,10 @@
     <title>Nhà Văn Nam Cao - Tác Phẩm Tiêu Biểu</title>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+    <!-- Color Thief for dominant color -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.4.0/color-thief.umd.js"></script>
 </head>
 <body>
     <header>
@@ -30,14 +34,34 @@
     <main>
         <section>
             <h2>Tác Phẩm Tiêu Biểu</h2>
-            <ul>
-                <li><strong>Chí Phèo</strong> (1941): Tác phẩm nổi tiếng miêu tả số phận bi kịch của người nông dân bị tha hóa.</li>
-                <li><strong>Lão Hạc</strong> (1943): Câu chuyện cảm động về một ông lão nghèo khổ.</li>
-                <li><strong>Đời thừa</strong> (1943): Phản ánh cuộc sống bế tắc của trí thức nghèo.</li>
-                <li><strong>Giăng sáng</strong>: Một truyện ngắn khác.</li>
-                <li><strong>Một bữa no</strong>: Miêu tả nỗi khổ của người dân.</li>
-                <li>Các tác phẩm khác: Tư cách Mộ Phùng, Truyện người hàng xóm, v.v.</li>
-            </ul>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" data-bg-color="#d2b48c"> <!-- Màu nâu nhạt cho Chí Phèo -->
+                        <img src="https://suckhoedoisong.qltns.mediacdn.vn/Images/duylinh/2020/02/23/Chi-pheo-Nam-Cao_resize.jpg" alt="Chí Phèo" crossorigin="anonymous">
+                        <p><strong>Chí Phèo</strong> (1941): Tác phẩm nổi tiếng miêu tả số phận bi kịch của người nông dân bị tha hóa.</p>
+                    </div>
+                    <div class="swiper-slide" data-bg-color="#c0c0c0"> <!-- Màu xám cho Lão Hạc -->
+                        <img src="https://dimibook.com/wp-content/uploads/2024/08/tieu-su-nam-cao-dimibook.jpg" alt="Lão Hạc" crossorigin="anonymous">
+                        <p><strong>Lão Hạc</strong> (1943): Câu chuyện cảm động về một ông lão nghèo khổ.</p>
+                    </div>
+                    <div class="swiper-slide" data-bg-color="#ffd700"> <!-- Màu vàng cho Đời thừa -->
+                        <img src="https://dimibook.com/wp-content/uploads/2024/07/doi-thua-bia.jpg" alt="Đời thừa" crossorigin="anonymous">
+                        <p><strong>Đời thừa</strong> (1943): Phản ánh cuộc sống bế tắc của trí thức nghèo.</p>
+                    </div>
+                    <div class="swiper-slide" data-bg-color="#87ceeb"> <!-- Màu xanh trời cho Giăng sáng -->
+                        <img src="https://307a0e78.vws.vegacdn.vn/view/v2/image/img.fm_audio_book/0/0/0/1931_fb.jpg?v=1&w=977&h=522" alt="Giăng sáng" crossorigin="anonymous">
+                        <p><strong>Giăng sáng</strong>: Một truyện ngắn khác.</p>
+                    </div>
+                    <div class="swiper-slide" data-bg-color="#808080"> <!-- Màu xám tối cho Một bữa no -->
+                        <img src="http://static.ybox.vn/2025/1/5/1737127542944-11.png" alt="Một bữa no" crossorigin="anonymous">
+                        <p><strong>Một bữa no</strong>: Miêu tả nỗi khổ của người dân.</p>
+                    </div>
+                    <div class="swiper-slide" data-bg-color="#a52a2a"> <!-- Màu nâu đỏ cho Tư cách Mộ Phùng -->
+                        <img src="https://thuvienninhthuan.vn/Upload/2022/01/24/nam-caocoverpc.jpg_2022Thg124_113918567(1).jpg" alt="Tư cách Mộ Phùng" crossorigin="anonymous">
+                        <p><strong>Tư cách Mộ Phùng</strong>: Một trong những tác phẩm khác của Nam Cao.</p>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
     
@@ -46,5 +70,43 @@
     </footer>
     
     <script src="script.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Swiper
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 3, // Hiển thị 3 slide (trung tâm + 2 bên)
+            centeredSlides: true,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 3000, // Tự động slide sau 3 giây
+                disableOnInteraction: false,
+            },
+            grabCursor: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 3,
+                },
+            },
+            on: {
+                slideChange: function () {
+                    // Thay đổi background dựa trên data-bg-color (preset vì CORS issue với ColorThief)
+                    var activeSlide = this.slides[this.activeIndex];
+                    var bgColor = activeSlide.getAttribute('data-bg-color');
+                    if (bgColor) {
+                        document.body.style.backgroundColor = bgColor;
+                    }
+                },
+            },
+        });
+    </script>
 </body>
 </html>
