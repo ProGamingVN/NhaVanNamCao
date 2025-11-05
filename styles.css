@@ -1,4 +1,4 @@
-/* styles.css */
+/* styles.css - Cập nhật để làm menu scrollable ngang */
 body {
     font-family: 'Lora', serif;
     background-color: #f4f1ea;
@@ -6,7 +6,7 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.5s ease; /* Thêm transition mượt cho background */
 }
 
 header {
@@ -36,6 +36,7 @@ nav {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    overflow: hidden; /* Ẩn thanh scroll nếu không cần */
 }
 
 nav ul {
@@ -43,12 +44,24 @@ nav ul {
     margin: 0;
     padding: 1rem 0;
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    justify-content: flex-start; /* Bắt đầu từ trái */
+    overflow-x: auto; /* Cho phép scroll ngang */
+    white-space: nowrap; /* Không wrap line */
+    flex-wrap: nowrap;
+    scrollbar-width: thin; /* Thanh scroll mỏng cho Firefox */
+}
+
+nav ul::-webkit-scrollbar {
+    height: 8px; /* Thanh scroll mỏng cho Chrome */
+}
+
+nav ul::-webkit-scrollbar-thumb {
+    background-color: #8b4513;
+    border-radius: 4px;
 }
 
 nav li {
-    margin: 0.5rem 1rem;
+    margin: 0 1rem;
 }
 
 nav a {
@@ -131,19 +144,53 @@ footer {
     display: block;
 }
 
+/* Carousel styles */
+.swiper-container {
+    width: 100%;
+    height: 500px; /* Điều chỉnh chiều cao */
+    margin: 20px auto;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s, filter 0.5s, transform 0.5s;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 300px; /* Kích thước hình ảnh trung tâm */
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.swiper-slide p {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+/* Effect cho slide bên: mờ và nhỏ hơn */
+.swiper-slide:not(.swiper-slide-active) {
+    opacity: 0.6;
+    filter: blur(3px);
+    transform: scale(0.8);
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     header h1 {
         font-size: 2rem;
     }
     
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-    }
-    
     nav li {
-        margin: 0.5rem 0;
+        margin: 0 0.5rem;
     }
     
     section {
@@ -153,14 +200,8 @@ footer {
     h2 {
         font-size: 1.5rem;
     }
-}
-
-@media (min-width: 769px) {
-    main {
-        display: grid;
-        grid-template-columns: 1fr minmax(0, 2fr);
-        gap: 2rem;
-    }
     
-    /* Adjust if needed for desktop */
+    .swiper-slide img {
+        width: 200px;
+    }
 }
