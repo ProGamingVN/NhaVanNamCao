@@ -1,4 +1,4 @@
-/* styles.css - Cập nhật để làm menu scrollable ngang */
+/* styles.css - Cập nhật để carousel không overflow, hình lớn, text chỉ ở active */
 body {
     font-family: 'Lora', serif;
     background-color: #f4f1ea;
@@ -6,7 +6,7 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    transition: background-color 0.5s ease; /* Thêm transition mượt cho background */
+    transition: background-color 0.5s ease;
 }
 
 header {
@@ -36,7 +36,7 @@ nav {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    overflow: hidden; /* Ẩn thanh scroll nếu không cần */
+    overflow: hidden;
 }
 
 nav ul {
@@ -44,15 +44,15 @@ nav ul {
     margin: 0;
     padding: 1rem 0;
     display: flex;
-    justify-content: flex-start; /* Bắt đầu từ trái */
-    overflow-x: auto; /* Cho phép scroll ngang */
-    white-space: nowrap; /* Không wrap line */
+    justify-content: flex-start;
+    overflow-x: auto;
+    white-space: nowrap;
     flex-wrap: nowrap;
-    scrollbar-width: thin; /* Thanh scroll mỏng cho Firefox */
+    scrollbar-width: thin;
 }
 
 nav ul::-webkit-scrollbar {
-    height: 8px; /* Thanh scroll mỏng cho Chrome */
+    height: 8px;
 }
 
 nav ul::-webkit-scrollbar-thumb {
@@ -91,6 +91,7 @@ section {
     opacity: 0;
     animation: fadeIn 1s forwards;
     transition: transform 0.3s ease;
+    overflow: hidden; /* Ngăn overflow nội dung */
 }
 
 section:hover {
@@ -144,11 +145,12 @@ footer {
     display: block;
 }
 
-/* Carousel styles */
+/* Carousel styles - Cập nhật */
 .swiper-container {
     width: 100%;
-    height: 500px; /* Điều chỉnh chiều cao */
+    height: auto; /* Tự động điều chỉnh chiều cao */
     margin: 20px auto;
+    overflow: hidden; /* Ngăn lướt ra ngoài */
 }
 
 .swiper-slide {
@@ -159,21 +161,30 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: opacity 0.5s, filter 0.5s, transform 0.5s;
+    transition: opacity 0.5s ease, filter 0.5s ease, transform 0.5s ease; /* Smooth transition */
 }
 
 .swiper-slide img {
     display: block;
-    width: 300px; /* Kích thước hình ảnh trung tâm */
+    width: 90vw; /* To gần bằng màn hình */
+    max-width: 800px; /* Giới hạn max cho desktop */
     height: auto;
-    object-fit: cover;
+    object-fit: contain; /* Giữ tỷ lệ hình */
     border-radius: 10px;
+    transition: all 0.5s ease; /* Smooth cho hình */
 }
 
 .swiper-slide p {
     margin-top: 20px;
     font-size: 1.2rem;
     color: #333;
+    opacity: 0; /* Ẩn text mặc định */
+    transition: opacity 0.5s ease; /* Smooth hiện text */
+}
+
+/* Chỉ hiện text ở slide active */
+.swiper-slide-active p {
+    opacity: 1;
 }
 
 /* Effect cho slide bên: mờ và nhỏ hơn */
@@ -181,6 +192,10 @@ footer {
     opacity: 0.6;
     filter: blur(3px);
     transform: scale(0.8);
+}
+
+.swiper-slide:not(.swiper-slide-active) p {
+    opacity: 0 !important; /* Đảm bảo không hiện text ở bên */
 }
 
 /* Responsive design */
@@ -202,6 +217,6 @@ footer {
     }
     
     .swiper-slide img {
-        width: 200px;
+        width: 95vw; /* Lớn hơn trên mobile */
     }
 }
