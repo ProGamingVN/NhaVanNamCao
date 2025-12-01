@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới Thiệu</title>
+    <style>
+        :root {
+            --primary-color: #6a11cb;
+            --secondary-color: #2575fc;
+            --text-dark: #333333;
+            --accent-color: #ff9900;
+            --transition-speed: 0.4s;
+        }
+        body { 
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background-color: transparent; /* Quan trọng: Để nền iframe trong suốt */
+            padding: 20px;
+        }
+        
+        section {
+            background: #ffffff;
+            padding: 50px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--secondary-color);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInContent 0.8s ease-out forwards;
+        }
+        
+        @keyframes fadeInContent {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+        h3 {
+            color: var(--secondary-color);
+            font-size: 1.8em;
+            margin: 30px 0 15px;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        p { margin-bottom: 15px; }
+        strong { color: var(--primary-color); font-weight: 700; }
+        em { color: var(--secondary-color); font-style: normal; font-weight: 500; }
+
+        .image-placeholder {
+            width: 100%;
+            min-height: 350px;
+            background: linear-gradient(45deg, #e6e9f0 0%, #aab8c2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px 0;
+            border: 3px dashed var(--primary-color);
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-speed);
+        }
+        .image-placeholder img { width: 100%; height: 100%; object-fit: cover; border-radius: 15px; }
+        .image-placeholder::before { content: '🖼️'; font-size: 5em; opacity: 0.2; position: absolute; }
+        .image-placeholder span { position: absolute; bottom: 15px; color: var(--primary-color); font-style: italic; font-size: 1.1em; background: rgba(255, 255, 255, 0.8); padding: 5px 10px; border-radius: 5px; }
+
+        .quote-box {
+            background: linear-gradient(135deg, #fceabb 0%, #f8b500 100%);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+            font-size: 1.4em;
+            font-style: italic;
+            text-align: center;
+            position: relative;
+            color: var(--text-dark);
+            box-shadow: 0 8px 25px rgba(255, 153, 0, 0.3);
+            border-left: 8px solid var(--primary-color);
+            transition: transform var(--transition-speed);
+        }
+        .quote-box::before { content: '“'; font-family: serif; font-size: 8em; position: absolute; top: -10px; left: 20px; color: rgba(255, 255, 255, 0.5); z-index: 1; }
+        .quote-content { position: relative; z-index: 2; }
+        
+        @media (max-width: 768px) {
+            section { padding: 30px 20px; }
+            h2 { font-size: 2em; }
+            .image-placeholder { min-height: 200px; }
+            .quote-box { font-size: 1.1em; padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h2>Giới Thiệu Chung</h2>
+        
+        <div class="image-placeholder">
+            <img src="placeholder-tohuu-portrait.jpg" alt="Ảnh chân dung Nhà thơ Tố Hữu">
+            <span>Ảnh chân dung Nhà thơ Tố Hữu (1920 - 2002)</span>
+        </div>
+
+        <p><strong>Tố Hữu</strong> (1920 - 2002), tên khai sinh là <em>Nguyễn Kim Thành</em>, là một trong những nhà thơ lớn nhất của nền văn học Việt Nam hiện đại. Ông được mệnh danh là <em>"Ngọn cờ đầu của thơ ca cách mạng"</em>.</p>
+        
+        <h3>Vị Trí & Tầm Ảnh Hưởng</h3>
+        <p><strong>Thời đại:</strong> Ông sáng tác xuyên suốt thời kỳ đấu tranh giành độc lập, thống nhất đất nước và xây dựng chủ nghĩa xã hội, gắn liền thơ ca với tiến trình lịch sử dân tộc.</p>
+        <p><strong>Vai trò:</strong> Không chỉ là một thi sĩ vĩ đại, Tố Hữu còn là một nhà lãnh đạo tư tưởng, văn hóa cấp cao của Đảng và Nhà nước ta, góp phần định hình đường lối văn hóa - văn nghệ cách mạng, theo phương châm <strong>"vừa hồng vừa chuyên"</strong>.</p>
+        <p>Thơ Tố Hữu là sự kết hợp hài hòa giữa **chất trữ tình** và **chất chính trị**, biến những sự kiện lịch sử vĩ đại thành cảm xúc cá nhân sâu sắc.</p>
+
+        <div class="quote-box">
+            <div class="quote-content">
+                "Từ ấy trong tôi bừng nắng hạ / Mặt trời chân lý chói qua tim." (Trích <em>Từ Ấy</em>)
+            </div>
+        </div>
+    </section>
+</body>
+</html>
